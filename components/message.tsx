@@ -112,22 +112,13 @@ const PurePreviewMessage = ({
                   </Tooltip>
                 )}
 
-                {/* <div
-                  className={cn("flex flex-col gap-4", {
-                    "bg-primary text-primary-foreground px-3 py-2 rounded-xl":
-                      message.role === "user",
-                  })}
-                >
-                  <Markdown>{message.content as string}</Markdown>
-                </div> */}
-
                 {/* TEXT MESSAGE */}
                 <div
                   // different formats for user and assistant messages
                   className={cn(
                     "flex flex-col gap-4 px-3 py-2 rounded-xl",
                     {
-                      "bg-neutral-300": message.role === "user",
+                      "bg-accent": message.role === "user",
                     },
                     {
                       "bg-muted": message.role === "assistant",
@@ -137,7 +128,7 @@ const PurePreviewMessage = ({
                   <Markdown>{message.content as string}</Markdown>
                 </div>
                 {message.role === "user" && (
-                  <div className="mt-1 size-8 flex items-center rounded-full justify-center bg-neutral-300">
+                  <div className="mt-1 size-8 flex items-center rounded-full justify-center bg-accent">
                     <User className="size-8 px-1.5" />
                   </div>
                 )}
