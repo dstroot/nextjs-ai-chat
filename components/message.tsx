@@ -1,21 +1,14 @@
 "use client";
 
+// https://codepen.io/AllThingsSmitty/pen/jommGQ
+
 import type { ChatRequestOptions, Message } from "ai";
 import cx from "classnames";
 import { AnimatePresence, motion } from "motion/react";
-import { memo, useMemo, useState } from "react";
-
+import { memo, useState } from "react";
 import type { Vote } from "@/lib/db/schema";
-
 import { DocumentToolCall, DocumentToolResult } from "./document";
-import {
-  ChevronDownIcon,
-  LoaderIcon,
-  PencilEditIcon,
-  SparklesIcon,
-  UserIcon,
-} from "./icons";
-import { User, Bot } from "lucide-react";
+import { User, Bot, PencilLine } from "lucide-react";
 import { Markdown } from "./markdown";
 import { MessageActions } from "./message-actions";
 import { PreviewAttachment } from "./preview-attachment";
@@ -100,12 +93,12 @@ const PurePreviewMessage = ({
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        className="px-2 h-fit rounded-full text-muted-foreground opacity-0 group-hover/message:opacity-100"
+                        className="px-2 size-8 rounded-full text-muted-foreground opacity-0 group-hover/message:opacity-100"
                         onClick={() => {
                           setMode("edit");
                         }}
                       >
-                        <PencilEditIcon />
+                        <PencilLine />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>Edit message</TooltipContent>
@@ -268,8 +261,8 @@ export const ThinkingMessage = () => {
           }
         )}
       >
-        <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">
-          <SparklesIcon size={14} />
+        <div className="size-10 flex items-center rounded-full justify-center bg-muted">
+          <Bot className="size-8 p-1" />
         </div>
 
         <div className="flex flex-col gap-2 w-full">

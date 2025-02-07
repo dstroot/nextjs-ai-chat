@@ -1,17 +1,17 @@
-import { Button } from './ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-import { blockDefinitions, UIBlock } from './block';
-import { Dispatch, memo, SetStateAction, useState } from 'react';
-import { BlockActionContext } from './create-block';
-import { cn } from '@/lib/utils';
-import { toast } from 'sonner';
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { blockDefinitions, UIBlock } from "./block";
+import { Dispatch, memo, SetStateAction, useState } from "react";
+import { BlockActionContext } from "./create-block";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface BlockActionsProps {
   block: UIBlock;
-  handleVersionChange: (type: 'next' | 'prev' | 'toggle' | 'latest') => void;
+  handleVersionChange: (type: "next" | "prev" | "toggle" | "latest") => void;
   currentVersionIndex: number;
   isCurrentVersion: boolean;
-  mode: 'edit' | 'diff';
+  mode: "edit" | "diff";
   metadata: any;
   setMetadata: Dispatch<SetStateAction<any>>;
 }
@@ -28,11 +28,11 @@ function PureBlockActions({
   const [isLoading, setIsLoading] = useState(false);
 
   const blockDefinition = blockDefinitions.find(
-    (definition) => definition.kind === block.kind,
+    (definition) => definition.kind === block.kind
   );
 
   if (!blockDefinition) {
-    throw new Error('Block definition not found!');
+    throw new Error("Block definition not found!");
   }
 
   const actionContext: BlockActionContext = {
@@ -52,9 +52,9 @@ function PureBlockActions({
           <TooltipTrigger asChild>
             <Button
               variant="outline"
-              className={cn('h-fit dark:hover:bg-zinc-700', {
-                'p-2': !action.label,
-                'py-1.5 px-2': action.label,
+              className={cn("h-fit dark:hover:bg-zinc-700", {
+                "p-2": !action.label,
+                "py-1.5 px-2": action.label,
               })}
               onClick={async () => {
                 setIsLoading(true);
@@ -62,17 +62,18 @@ function PureBlockActions({
                 try {
                   await Promise.resolve(action.onClick(actionContext));
                 } catch (error) {
-                  toast.error('Failed to execute action');
+                  console.error(error);
+                  toast.error("Failed to execute action");
                 } finally {
                   setIsLoading(false);
                 }
               }}
               disabled={
-                isLoading || block.status === 'streaming'
+                isLoading || block.status === "streaming"
                   ? true
                   : action.isDisabled
-                    ? action.isDisabled(actionContext)
-                    : false
+                  ? action.isDisabled(actionContext)
+                  : false
               }
             >
               {action.icon}

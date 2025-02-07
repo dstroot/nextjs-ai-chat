@@ -29,11 +29,11 @@ import { sanitizeUIMessages } from "@/lib/utils";
 
 import {
   ArrowUpIcon,
-  CodeIcon,
-  LogsIcon,
-  MessageIcon,
-  PenIcon,
-  SparklesIcon,
+  // CodeIcon,
+  // LogsIcon,
+  // MessageIcon,
+  // PenIcon,
+  // SparklesIcon,
   StopIcon,
   SummarizeIcon,
 } from "./icons";
