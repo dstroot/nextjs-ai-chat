@@ -36,11 +36,15 @@ const components: Partial<Components> = {
     );
   },
   a: ({ node, children, ...props }) => {
+    const a = props as HTMLHyperlinkElementUtils;
+    const href = a.href;
+
     return (
       <Link
         className="text-blue-500 hover:underline"
         target="_blank"
         rel="noreferrer"
+        href={href}
         {...props}
       >
         {children}
