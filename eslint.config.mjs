@@ -32,7 +32,7 @@ const eslintConfig = [
         },
       },
     },
-    ignores: ["**/components/ui/**"],
+    ignores: [".components/ui/"],
   },
 ];
 
